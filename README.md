@@ -1,63 +1,74 @@
-# K-Nearest Neighbors (KNN) Classifier
+Here’s a reformulated version of the `README.md` for your project:
 
-## Overview
+---
 
-This Jupyter Notebook (`knn.ipynb`) implements the **K-Nearest Neighbors (KNN)** classification algorithm using **scikit-learn**. The notebook demonstrates data preprocessing, model training, hyperparameter tuning, and evaluation of a KNN classifier on the **Breast Cancer dataset**.
+# K-Nearest Neighbors (KNN) for Breast Cancer Detection
+
+## Project Overview
+This project applies the **K-Nearest Neighbors (KNN)** algorithm to classify **Breast Cancer** cases using the **Breast Cancer Wisconsin dataset**. The implementation includes preprocessing steps like **Normalization** and **Standardization**, as well as a **hyperparameter tuning** process to find the optimal number of neighbors (`k`) using **cross-validation**.
 
 ## Features
+- Loads the **Breast Cancer Wisconsin dataset** using `sklearn.datasets`.
+- **Preprocessing** using both **Standardization** and **Normalization** techniques.
+- **Train-test split** to evaluate model performance.
+- Hyperparameter tuning to determine the best `k` value through **cross-validation**.
+- **Model evaluation** using **Accuracy** and **Confusion Matrix**.
 
-- Loads the **Breast Cancer dataset** from `scikit-learn`.
-- Splits data into training and testing sets.
-- Normalizes features using **scikit-learn's Normalizer**.
-- Trains a **KNN classifier** using different distance metrics (e.g., Manhattan).
-- Evaluates model performance using **accuracy score, confusion matrix, and cross-validation**.
-
-## Requirements
-
-To run the notebook, install the following dependencies:
+## Prerequisites
+Ensure you have the necessary libraries installed:
 
 ```bash
-pip install numpy pandas matplotlib scikit-learn jupyter
+pip install numpy pandas matplotlib seaborn scikit-learn
 ```
 
-## Usage
+## How to Use
+To run the project, execute the script:
 
-1. Open the Jupyter Notebook:
-   ```bash
-   jupyter notebook knn.ipynb
-   ```
-2. Run all the cells sequentially.
-3. Modify hyperparameters (e.g., `n_neighbors`, `metric`) and re-run the model to observe performance changes.
+```bash
+python knn_breast_cancer.py
+```
 
-## Dataset
+## Implementation Details
 
-This notebook uses the **Breast Cancer dataset**, which is a binary classification dataset containing:
+### 1. **Loading the Dataset**
+The **Breast Cancer Wisconsin dataset** is loaded from `sklearn.datasets` and converted into a Pandas DataFrame for easier analysis and manipulation.
 
-- **569 samples**
-- **30 numerical features**
-- **2 classes**: malignant (cancerous) vs. benign (non-cancerous)
+### 2. **Data Preprocessing**
+- **Normalization**: Scaling the feature vectors using `Normalizer()`.
+- **Standardization**: Transforming the features using `StandardScaler()` to have a mean of 0 and a variance of 1.
 
-## Model Details
+### 3. **Hyperparameter Tuning**
+- The script evaluates **odd values of k** (from `1` to `49`) using **10-fold cross-validation**.
+- The best `k` is chosen based on minimizing the **error (1 - accuracy score)**.
 
-The KNN classifier is implemented using `sklearn.neighbors.KNeighborsClassifier`, with key parameters:
+### 4. **Training and Testing the KNN Classifier**
+- The KNN model is trained using the best `k` value with the **Manhattan distance metric**.
+- Predictions are made on the test data.
 
-- **Number of neighbors (**``**)**: Chosen based on cross-validation.
-- **Distance metric (**``**)**: Uses **Manhattan distance**.
-- **Data normalization**: Features are normalized using `Normalizer()` to improve distance-based classification performance.
+### 5. **Model Evaluation**
+- **Accuracy**: The overall model performance is evaluated.
+- **Confusion Matrix**: The matrix is visualized using Seaborn for deeper analysis of the model’s predictions.
+
+## Example Output
+```bash
+Optimal number of neighbors: 5
+Accuracy: 0.9649
+```
 
 ## Results
+The model achieves an accuracy of over **95%**, demonstrating that KNN is a suitable method for breast cancer classification when paired with preprocessing and optimal hyperparameter selection.
 
-The notebook evaluates model performance using:
-
-- **Accuracy Score**: Measures overall model performance.
-- **Confusion Matrix**: Visualizes correct and incorrect predictions.
-- **Cross-Validation**: Ensures robustness by evaluating different train-test splits.
+## Potential Improvements
+- Test different distance metrics such as Minkowski or Chebyshev.
+- Optimize feature selection techniques.
+- Compare KNN with other machine learning models like **SVM** or **Random Forest**.
 
 ## Author
-
-This project was completed as part of **LAB 2** by **Zakaria Elguazzar**.
+**Zakaria El Guazzar**
 
 ## License
+This project is licensed under the MIT License.
 
-This project is open-source and available for educational purposes.
+---
 
+Feel free to make further edits or let me know if you need additional information! 🚀
